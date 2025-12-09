@@ -1,0 +1,26 @@
+package org.zerock.dto;
+
+import java.time.LocalDateTime;
+
+/*
+ * create table table_board(
+    bno int auto_increment primary key,
+    title varchar(500) not null,
+    content varchar(2000) not null,
+    writer varchar(50) not null,
+    regdate timestamp default now(),
+    updatedate timestamp default now(),
+    delflag boolean default false
+);
+ */
+public class BoardDTO {
+
+	private Long bno;
+	private String title;
+	private String writer;
+	private String content;
+	private LocalDateTime regDate;
+	private LocalDateTime updateDate;
+	private boolean delFlag;
+	
+}

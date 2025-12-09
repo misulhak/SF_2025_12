@@ -1,0 +1,18 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<%@ include file= "/WEB-INF/views/includes/header.jsp"%>
+
+<div class="row justify-content-center">
+    <div class="col-lg-12">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+            ${list }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%@ include file= "/WEB-INF/views/includes/footer.jsp"%>

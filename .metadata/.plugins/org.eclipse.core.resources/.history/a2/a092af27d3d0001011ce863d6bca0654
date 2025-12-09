@@ -1,0 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%@ include files= "/WEB-INF/views/includes/header"%>
+<%@ include files= "/WEB-INF/views/includes/footer"%>

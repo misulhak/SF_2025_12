@@ -1,0 +1,34 @@
+package org.zerock.mapper;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.zerock.dto.BoardDTO;
+
+import lombok.extern.log4j.Log4j2;
+
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration()
+@Log4j2
+
+public class BoardMapperTests {
+	
+	@Autowired
+	private BoardMapper boardMapper;
+	
+	@Test
+	public void testInsert() {
+		
+		BoardDTO dto = new BoardDTO();
+		dto.setTitle("title");
+		dto.setContent("content");
+		dto.setWriter("user00");
+		
+		int insertCount = boardMapper.insert(dto);
+		log.info("------------------------------");
+		log.info("insertCount : " + insertCount);
+	}
+	
+}

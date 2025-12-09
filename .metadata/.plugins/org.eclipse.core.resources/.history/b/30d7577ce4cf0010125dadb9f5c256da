@@ -1,0 +1,45 @@
+package org.zerock.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.service.HelloService;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Controller
+@Log4j2
+@RequiredArgsConstructor
+@RequestMapping("/sample")
+public class HelloController {
+
+	private final HelloService helloService;
+	
+	
+	/*
+	 * String : /WEB-INF/views/ex1.jsp
+	 * void : /WEB-INF/views/sample/ex1.jsp
+	 *      : /WEB-INF/views/sample/ex2.jsp
+	 */
+			
+	
+	@GetMapping("/ex1")
+	public void ex1() {
+		log.info("/sample/ex1");
+	}
+
+	@GetMapping("/ex2")
+	public void ex2() {
+		log.info("/sample/ex2");
+	}
+	
+	@GetMapping("/ex3")
+	public String ex3() {
+		return "ex3";
+	}
+	
+}

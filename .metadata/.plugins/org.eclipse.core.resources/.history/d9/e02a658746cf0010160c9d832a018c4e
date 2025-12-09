@@ -1,0 +1,27 @@
+package org.zerock.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.zerock.service.HelloService;
+
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Controller
+@Log4j2
+@RequiredArgsConstructor
+@NoArgsConstructor
+public class HelloController {
+
+	private final HelloService helloService;
+	
+	
+	// @Autowired - 필드 주입
+	//private HelloService helloService;
+	
+//	public HelloController(HelloService helloService) {
+//		this.helloService = helloService;
+//	}
+}

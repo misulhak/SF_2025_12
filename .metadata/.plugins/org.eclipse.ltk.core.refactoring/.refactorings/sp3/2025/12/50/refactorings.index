@@ -1,0 +1,7 @@
+1765156039211	Rename type 'MemberDTO'
+1765156562766	Rename resource 'member'
+1765157333180	Rename type 'MemberService'
+1765159534961	Rename resource 'MemberMapper.xml'
+1765165469508	Rename compilation unit 'MemberServiceTest.java'
+1765165483568	Rename compilation unit 'MemberMapperTests.java'
+1765165494790	Rename compilation unit 'TodoServiceTest.java'

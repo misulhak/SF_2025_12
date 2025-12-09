@@ -1,0 +1,74 @@
+package org.zerock.mapper;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.zerock.dto.TodoDTO;
+
+import lombok.extern.log4j.Log4j2;
+
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j2
+class TodoMapperTests {
+    
+	@Autowired
+	private TodoMapper todoMapper; 
+	
+	@Test
+	void testInsert() {
+		TodoDTO dto = TodoDTO.builder()
+				.title("테스트 TODO 삽입")
+				.description("Mapper 테스트용 설명입니다.")
+				.build();
+		
+		todoMapper.insert(dto); 
+		
+		log.info("생성된 PK (ID) : " + dto.getId()); 
+		
+		assertNotNull(dto.getId());
+        assertTrue(dto.getId() > 0);
+	}
+	
+	@Test
+	void testList() {
+		todoMapper.getList()
+		.forEach(todo -> log.info(todo));
+	}
+	
+	@Test
+	void testTodoById() { 
+		TodoDTO dto = todoMapper.todoById(3); 
+		
+		log.info(dto);
+		assertNotNull(dto);
+        assertEquals(3, dto.getId());
+	}
+	
+	@Test
+	void testUpdate() {
+		TodoDTO dto = TodoDTO.builder()
+				.id(2) 
+				.title("수정된 제목입니다.")
+				.description("내용도 수정되었습니다.")
+				.done(true) 
+				.build();
+		
+		todoMapper.update(dto);
+		
+		log.info("업데이트 후 조회 결과: ");
+		log.info(todoMapper.todoById(2));
+	} // end testUpdate
+	
+	@Test
+	void testDelete() {
+		todoMapper.delete(5);
+        
+        assertNull(todoMapper.todoById(5));
+	}
+
+} // end TodoMapperTests

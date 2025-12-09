@@ -1,0 +1,19 @@
+body {
+    padding-top: 20px;
+}
+
+.done {
+    text-decoration: line-through; 
+    color: #6c757d; /* Bootstrap gray color */
+    font-style: italic;
+    background-color: #f8f9fa; /* slightly darker background for done items */
+}
+
+.btn-primary, .btn-danger, .btn-info {
+    margin-right: 5px;
+}
+
+.container label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}

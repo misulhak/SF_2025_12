@@ -1,0 +1,97 @@
+package org.zerock.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.zerock.dto.BoardDTO;
+import org.zerock.service.BoardService;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+
+@Controller
+@Log4j2
+@RequestMapping("/board")
+@RequiredArgsConstructor
+public class BoardController {
+
+	//생성자 주입(DI) , @RequiredArgsConstructor 의해서
+	private final BoardService boardService;
+	
+	/*
+	//localhost:8080/board/ex1 -> /WEB-INF/ views / board / ex1.jsp
+	@GetMapping("/ex1")
+	void ex1() {
+		
+	}
+	*/
+	
+	// localhost:8080/board/list
+	// -> /WEB-INF/ views / board / list.jsp
+	@GetMapping("/list")
+	public void list(Model model) {
+		log.info("board list");
+		
+		List<BoardDTO> boardDtoList = boardService.getList();
+		model.addAttribute("list", boardDtoList); 
+
+	}
+	
+	//등록 화면
+	@GetMapping("/register")
+	public void register() {
+		log.info("board register");
+	}
+	
+	//등록 처리
+	@PostMapping("/register")
+	public String registerPost() {
+		log.info("-------------------------------");
+		log.info("board register post");
+		return "redirect:/board/list";
+	}
+	
+	//단건 조회	localhost:8080/board/read/1 
+	// db에서 1번 데이타 보여주세요
+	// -> /WEB-INF/ views / board / read.jsp
+	@GetMapping("/read/{bno}")
+	public String read(@PathVariable("bno") Long bno) {
+		
+		log.info("board read");
+		return "/board/read";
+		
+	}
+	
+	/*
+	 * 수정 폼
+	 * localhost:8080/board/modify/1 
+	 */
+	@GetMapping("/modify/{bno}")
+	public String modifyGet(@PathVariable("bno") Long bno) {
+		log.info("board modify get");
+		return "board/modify";
+	}
+	
+	@PostMapping("/modify/")
+	public String modifyPost() {
+		log.info("board modify post");
+		
+		return "redirect:/board/read/1";
+	}
+	
+	/*
+	 * 삭제
+	 * localhost:8080/board/remove 
+	 */
+	@PostMapping("/remove")
+	public String remove() {
+		log.info("board remove post");
+		
+		return "redirect:/board/list";
+	}
+}

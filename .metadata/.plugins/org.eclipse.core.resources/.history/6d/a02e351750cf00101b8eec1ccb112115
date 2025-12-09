@@ -1,0 +1,5 @@
+package org.zerock.db;
+
+public class DBTests {
+
+}
