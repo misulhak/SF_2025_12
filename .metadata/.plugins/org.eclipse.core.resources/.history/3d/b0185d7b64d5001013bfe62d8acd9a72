@@ -1,0 +1,94 @@
+package org.zerock.mapper;
+
+import java.util.List;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.zerock.dto.BoardDTO;
+
+import lombok.extern.log4j.Log4j2;
+
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j2
+public class BoardMapperTests {
+
+	@Autowired
+	private BoardMapper boardMapper;
+	
+	@Test
+	public void testInsert() {
+		
+//		BoardDTO dto = new BoardDTO();
+//		dto.setTitle("title");
+//		dto.setContent("content");
+//		dto.setWriter("user00");
+		
+		BoardDTO dto = BoardDTO.builder()
+				.title("title4")
+				.content("content4")
+				.writer("user04")				
+				.build();
+		
+		int insertCount = boardMapper.insert(dto);
+		log.info("-----------------------------");
+		log.info("insertCount : " + insertCount);
+		
+		log.info("BNO : " + dto.getBno());
+	}
+	
+	@Test
+	public void testSelectOne() {
+		 BoardDTO boardDTO = boardMapper.selectOne(1L);
+		 
+		 log.info("boardDTO : " + boardDTO);
+	}
+	
+	@Test
+	public void testDelete() {
+		int result = boardMapper.remove(1L);
+		
+		log.info("result : " + result);
+	}
+	
+	@Test
+	public void testUpdate() {
+		BoardDTO dto = BoardDTO.builder()
+				.title("new title")
+				.content("new Content")
+				.delFlag(false)
+				.bno(1L)
+				.build();
+		
+		int result = boardMapper.update(dto);
+		log.info("result : " + result);
+	}
+	
+	@Test
+	public void testSelect() {
+		
+		//List<BoardDTO> list = boardMapper.list();		
+		//for(BoardDTO dto : list)
+		//	log.info(dto);
+		
+		
+		boardMapper.list().forEach(dto->log.info(dto));
+		
+	}
+	
+	@Test
+	public void testPagining() {
+		int page = 1;
+		
+		//계산
+		int skip = (page -1) * 10;
+		int count = 10;
+		
+		boardMapper.list2(skip, count)
+			.forEach(board-> log.info(board));
+	}
+	
+}

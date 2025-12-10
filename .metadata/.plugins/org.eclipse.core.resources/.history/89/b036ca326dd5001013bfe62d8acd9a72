@@ -1,0 +1,23 @@
+package org.zerock.dto;
+
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class BoardListPaginDTO {
+	
+	private List<BoardDTO> boardDTOList;  // 전체 목록
+	
+	private int totalCount; // 전체 갯수
+	
+	private int page, size; // 페이지번호, 화면당 보여지는 갯수
+		
+	public BoardListPaginDTO(List<BoardDTO> boardDTOList, int totalCount, int page, int size) {
+	      this.boardDTOList = boardDTOList;
+	      this.totalCount = totalCount;
+	      this.page = page;
+	      this.size = size;
+	}
+}
+

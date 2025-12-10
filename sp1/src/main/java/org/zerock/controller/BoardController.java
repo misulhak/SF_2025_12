@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.dto.BoardDTO;
+import org.zerock.dto.BoardListPaginDTO;
 import org.zerock.service.BoardService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,12 +37,18 @@ public class BoardController {
 	// localhost:8080/board/list
 	// -> /WEB-INF/ views / board / list.jsp
 	@GetMapping("/list")
-	public void list(Model model) {
+	public void list(
+			@RequestParam(name="page", defaultValue = "1") int page,
+			@RequestParam(name="size", defaultValue = "10") int size,
+			Model model) {
 		log.info("board list");
 		
-		List<BoardDTO> boardDtoList = boardService.getList();
+		BoardListPaginDTO list = boardService.getList(page, size);
 		
-		model.addAttribute("list", boardDtoList);
+		log.info("-------------------");
+		log.info(list);
+		
+		model.addAttribute("dto", list);
 		
 //		model.addAttribute("list", boardService.getList());
 
@@ -114,9 +121,9 @@ public class BoardController {
 	 * localhost:8080/board/remove 
 	 */
 	@PostMapping("/remove")
-	public String remove(@RequestParam("bno") Long bno, 
+	public String remove(@RequestParam("bno") Long bno,
 			RedirectAttributes rttr) {
-		
+	
 		log.info("board remove post : " + bno);
 		
 		boardService.remove(bno);

@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="hasShownOverlayPopupBefore" value="true"/>
 	<section name="java.lang.Class">
-		<item key="selection" value=""/>
+		<item key="selection" value="&lt;nav aria-label=&quot;Page navigation example&quot;&gt;"/>
 		<item key="wrap" value="true"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
@@ -10,6 +10,7 @@
 		<item key="isRegEx" value="false"/>
 		<item key="replaceBarOpen" value="false"/>
 		<list key="findhistory">
+			<item value="&lt;nav aria-label=&quot;Page navigation example&quot;&gt;"/>
 			<item value="href=&quot;/todo/read/${todo.id}&quot;"/>
 			<item value="context"/>
 			<item value="&lt;context:component-scan base-package=&quot;org.zerock.controller&quot; /&gt;"/>
@@ -17,14 +18,6 @@
 			<item value="INFO"/>
 			<item value="INFO "/>
 			<item value="INFO  org.zerock.controller."/>
-			<item value="INFO  org.zerock.controller.TodoController - register ge"/>
-			<item value="INFO  org.zerock.controller.TodoController - register get: 새 항목 등록 폼 요청 처리 중..."/>
-			<item value="creat"/>
-			<item value="configLocation"/>
-			<item value="ResultSet"/>
-			<item value="dataSource"/>
-			<item value="driverClassName"/>
-			<item value="HikariConfig"/>
 		</list>
 		<list key="replacehistory">
 		</list>

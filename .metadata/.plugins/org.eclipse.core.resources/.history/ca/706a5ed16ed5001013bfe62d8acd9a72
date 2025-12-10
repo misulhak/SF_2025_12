@@ -1,0 +1,38 @@
+package org.zerock.dto;
+
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class BoardListPaginDTO {
+	
+	private List<BoardDTO> boardDTOList;  // 전체 목록
+	
+	private int totalCount; // 전체 갯수
+	
+	private int page, size; // 페이지번호, 화면당 보여지는 갯수
+	
+	private int start, end; // 페이지 시작, 끝
+	private boolean prev,next; // 이전, 다음 버튼
+	private List<Integer> pageNums;
+		
+	public BoardListPaginDTO(List<BoardDTO> boardDTOList, int totalCount, int page, int size) {
+	      this.boardDTOList = boardDTOList;
+	      this.totalCount = totalCount;
+	      this.page = page;
+	      this.size = size;
+	      
+	      //start 계산을 위한 end페이지
+	      int tempEnd = (int)(Math.ceil(page/10.0)) * 10;
+	      
+	      this.start = tempEnd - 9;
+	      
+	      if((tempEnd *size) > totalCount) {
+	    	  this.end =(int)(Math.ceil(totalCount / (double)size));
+	      }else {
+	    	  this.end = tempEnd;
+	      }
+	}
+}
+

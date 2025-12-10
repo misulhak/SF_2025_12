@@ -1,9 +1,0 @@
-package org.zerock.dto;
-
-import lombok.Setter;
-
-@Setter
-public class SampleDTO {
-	private String name;
-	private int age;
-}
