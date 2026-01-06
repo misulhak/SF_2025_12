@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.zerock.mapper.ReplyMapper">
+  
+  <insert id="insert">
+  	<selectKey order="AFTER" keyProperty="rno" resultType="int">
+  		SELECT LAST_INSERT_ID()
+  	</selectKey>
+  
+  	INSERT INTO treply (num, replyText, replyer)
+  	VALUES (#{num}, #{replyText}, #{replyer})
+  </insert>
+  
+  <select id="read" resultType="org.zerock.dto.ReplyDTO">
+  	SELECT * FROM treply 
+  	WHERE rno = #{rno}
+  </select>
+  
+  <delete id="delete">
+    UPDATE treply
+    SET delflag = true 
+    WHERE rno = #{rno}
+  </delete>
+  
+  <update id="update">
+  	UPDATE treply
+  	SET replyText = #{replyText}, updatedate = NOW()
+  	WHERE rno = #{rno}
+  </update>
+  
+  <select id="listOfMember" resultType="org.zerock.dto.ReplyDTO">  
+  	SELECT * FROM treply
+  	WHERE num = #{num} AND rno > 0 AND delflag = false
+  	ORDER BY rno DESC
+  	LIMIT #{limit} OFFSET #{skip}
+  </select>
+  
+  <select id="countOfMember" resultType="int">
+  	SELECT COUNT(rno) FROM treply
+  	WHERE num = #{num} AND rno > 0 AND delflag = false
+  </select>
+  
+</mapper>
